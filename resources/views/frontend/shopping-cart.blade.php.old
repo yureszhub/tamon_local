@@ -1,0 +1,56 @@
+@extends('frontend.header')
+
+@section('content')
+<div class="large-12 columns">
+	<div class="large-12 columns content-producto">
+	<h4>CARRITO DE COMPRAS</h4>
+	@if( Session::has('cart') && Session::get('cart')['totalQty'] > 0 )
+		<div class="small-12 large-8 columns">
+			<ul class="no-bullet">
+				@foreach($productos as $p)
+				<li class="large-12 columns list-shopping">
+					<div class="small-4 large-4 columns list-img">
+						<figure>
+							<img id="img_zoom" src="{{ url('imgProductos/' . $p['item']['img_producto']) }}">
+						</figure>
+					</div>
+					<div class="small-8 large-8 columns list-descripcion">
+						<h5 class="cart-title-producto">{{ $p['item']['nom_producto'] }}</h5>
+						<div class="small-4 large-4 columns list-descripcion-precios">
+							<span class="color-plomo">S/ {{ number_format($p['item']['precio'], 2, '.', ',') }}</span>
+							<span> -{{ $p['descuento'] }}%</span><br>
+							<span class="precio-unitario">P. Unit. </span><span class="color-verde">S/ {{ number_format($p['item']['precio'] - (($p['item']['precio'] * $p['descuento']) / 100), 2, '.', ',') }}</span>
+						</div>
+						<div class="small-4 large-4 columns">
+						  <label>Cantidad:
+						    <input class="prod_cant" type="number" placeholder="Cantidad" value="{{ $p['qty'] }}" data-codigo="{{ $p['item']['id'] }}" min="0" />
+						  </label>
+						</div>
+						<div class="small-4 large-4 columns">
+						  <label>Importe:
+						    <input type="text" placeholder="Importe" value="{{ number_format($p['price'], 2, '.', ',') }}" readonly />
+						  </label>
+						</div>
+					</div>
+				</li>
+				@endforeach
+				<li class="large-12 columns list-shopping">
+					<div class="small-12 columns end text-right">
+						<span><strong>SubTotal ({{ Session::get('cart')['totalQty'] }} items): </strong></span><span class="color-rojo">S/ {{ number_format(Session::get('cart')['totalPrice'], 2, '.', ',') }}</span>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="small-12 large-4 columns resumen-cotizacion">
+			<h4>Resumen de tu Cotización</h4>
+			<div>
+				<span><strong>SubTotal ({{ Session::get('cart')['totalQty'] }} items): </strong></span><span class="color-rojo">S/ {{ number_format(Session::get('cart')['totalPrice'], 2, '.', ',') }}</span>
+				<button>Enviar Cotización</button>
+			</div>
+		</div>
+	@else
+		<h4>No hay productos seleccionados</h4>
+	@endif
+	</div>
+</div>
+@endsection

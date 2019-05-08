@@ -1,0 +1,83 @@
+.admin-sidebar {
+	background-color: #363636;
+}
+
+.admin-sidebar li a:not(.button) {
+	color: #fff;
+}
+
+.admin-sidebar li a:not(.button):hover {
+	background-color: #008CBA;
+	color: #fff;
+}
+
+.dashboard-content {
+	background-color: #fff;
+}
+
+.header-list {
+	position: relative;
+	padding: 1em 0;
+}
+
+.open-modal {
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.reveal-modal {
+	width: 50%;
+}
+
+.list-categorias .button.small {
+	padding-left: 0.75rem;
+	padding-right: 0.75rem;
+	margin-bottom: 0;
+}
+
+.list-categorias .inline-block {
+	display: inline-block;
+}
+.clear {
+	clear: both;
+}
+.rox-form-search {
+	max-width: 100%;
+}
+
+.select-oferta .ms-selectable:before {
+	content: "Lista de productos";
+}
+
+.select-oferta .ms-selection:before {
+	content: "Productos agregados";
+}
+
+.access_dashboard figure, .access_dashboard h2 {
+	text-align: center;
+}
+
+.access_dashboard > div:hover { box-shadow: 1px 1px 8px #333; }
+
+.ms-selection .suma_lista { margin-bottom: 0; border: 0; box-shadow: none; }
+
+.label-form { color: #2b9948; font-weight: 600; text-transform: uppercase; }
+
+.select-oferta .ms-container .ms-list {
+	box-shadow: 0 0 3px #333;
+	border: 1px solid red;
+}
+
+@media only screen and (max-width: 940px) {
+	.colum_description { display: none; }
+}
+
+@media only screen and (max-width: 580px) {
+	.colum_categoria { display: none; }	
+}
+
+@media only screen and (max-width: 490px) {
+	.colum_precio_anterior { display: none; }
+}

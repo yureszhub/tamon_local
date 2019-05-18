@@ -23,9 +23,9 @@ class Frontend extends Controller
    * @return \Illuminate\Http\Response
    */
   public function index() {
-    $categorias = DB::table('categorias')
+    $categorias = DB::table('categories')
       ->where('id', '!=', 1)
-      ->select('id', 'nom_categoria')
+      ->select('id', 'name', 'slug')
       ->get();
 
     foreach ($categorias as $cat) {
@@ -41,16 +41,21 @@ class Frontend extends Controller
     return view('frontend.listas', ['cate' => $categorias, 'ofertas' => $ofertas]);
   }
 
-  public function productosXcategoria($id_category) {
-      $productos = DB::table('productos')
-                  ->leftJoin('oferta_dias', 'productos.id', '=', 'oferta_dias.producto_id')
-                  ->where('productos.categoria_id', $id_category)
-                  ->orderBy('productos.id', 'desc')
-                  ->select('productos.*', 'oferta_dias.descuento')
-                  ->get();
-      $categoria = Categoria::find($id_category);
+  public function productosXcategoria($slug) {
+      $categoria = DB::table('categories')->where('slug', $slug)->first();
+      if (!is_null($categoria)) {
+        $productos = DB::table('familia_producto')
+                    ->where('familia_producto.categoria_id', $categoria->id)
+                    ->leftJoin('ofertas', 'familia_producto.cod_producto', '=', 'ofertas.cod_producto')
+                    ->orderBy('familia_producto.id', 'desc')
+                    ->select('familia_producto.id', 'familia_producto.cod_producto', 'familia_producto.nombre', 'familia_producto.descripcion', 'familia_producto.precio_unitario', 'familia_producto.foto', 'ofertas.descuento')
+                    ->paginate(16);
+
+        return view('frontend.list_prodxcategory', ['productos' => $productos, 'categoria' => $categoria]);
+      } else {
+        return redirect('/');
+      }
     
-      return view('frontend.list_prodxcategory', ['productos' => $productos, 'categoria' => $categoria]);
   }
 
   public function showProducto($id_producto) {
@@ -79,9 +84,9 @@ class Frontend extends Controller
   }
 
   public function getCategories(){
-    $categories = DB::table('categorias')
+    $categories = DB::table('categories')
       ->where('id', '!=', 1)
-      ->select('id', 'nom_categoria')
+      ->select('id', 'name', 'slug')
       ->get();
 
     return $categories;

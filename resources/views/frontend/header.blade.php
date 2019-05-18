@@ -66,9 +66,9 @@
             <li><a href="{{ route('contacto-corporativo') }}">Corporativo</a></li>
           </ul>
         </li>
-        <?php $categorias = DB::table('categorias')->select('id' ,'nom_categoria')->get(); ?>
+        <?php $categorias = DB::table('categories')->select('id' ,'name')->get(); ?>
         <li v-for="c in categorias" class="dotted">
-          <a :href="'/categoria/'+c.id">@{{ c.nom_categoria }}</a>
+          <a :href="'/categoria/'+c.slug">@{{ c.name }}</a>
         </li>
         <li class="dotted">
           <a href="{{ route('producto.carrito_de_compras') }}">
@@ -97,7 +97,7 @@
       <div class="small-12 medium-3 large-3 columns">
         <h4>Categorías</h4>
         <ul class="no-bullet list-white">
-          <li v-for="c in categorias"><a :href="'/categoria/'+c.id">@{{ c.nom_categoria }}</a></li>
+          <li v-for="c in categorias"><a :href="'/categoria/'+c.slug">@{{ c.name }}</a></li>
         </ul>
       </div>
       <div class="small-12 medium-3 large-3 columns">

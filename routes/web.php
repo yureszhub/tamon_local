@@ -12,7 +12,7 @@
 */
 
 /****************** BACKEND ******************/
-	Auth::routes();
+	/*Auth::routes();
 
 	Route::get('/home', 'HomeController@index')->name('home');
 
@@ -23,8 +23,7 @@
 	Route::resource('productos', 'Productos');
 
 	/// Rutas para las Ofertas del dia en el BackEnd
-	/*Route::resource('ofertas', 'OfertasDia');*/
-	Route::resource('ofertas', 'OfertaController');
+	Route::resource('ofertas', 'OfertaController');*/
 
 /****************** END BACKEND ******************/
 
@@ -33,7 +32,7 @@
 
 	Route::get('/get-categories', 'Frontend@getCategories');
 
-	Route::get('/categoria/{id}', ['uses' => 'Frontend@productosXcategoria',
+	Route::get('/categoria/{slug}', ['uses' => 'Frontend@productosXcategoria',
 									'as' => 'categoria']);
 
 	Route::get('/producto/{id}', ['uses' => 'Frontend@showProducto',

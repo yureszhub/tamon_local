@@ -191,9 +191,9 @@ span.error-frontpage { margin-bottom: 0; }
 #slider-carousel-category .owl-next:hover {
 	background-color: rgba(43, 153, 72, 1);	
 }
-.owl-item {
+/*.owl-item {
 	text-align: center;
-}
+}*/
 
 .categorias-productos-frontend {
 	/*background: #f2f2f2;*/
@@ -230,7 +230,7 @@ span.error-frontpage { margin-bottom: 0; }
 #slider-carousel-category {
 	padding-top: 0;
 }
-#slider-carousel-category .owl-nav {
+/*#slider-carousel-category .owl-nav {
 	display: block;
 	position: absolute;
 	width: 100%;
@@ -238,7 +238,7 @@ span.error-frontpage { margin-bottom: 0; }
 	margin-top: 0;
 	transform: translateY(-50%);
 	z-index: 9;
-}
+}*/
 
 /* end lista flexbox */
 
@@ -423,13 +423,14 @@ span.error-frontpage { margin-bottom: 0; }
 		background-image: url('../images/contacto_corporativo.jpg');
 		background-repeat: no-repeat;
 		background-position: right top;
-		background-size: auto 100%;
+		background-size: 100% auto;
 	}
 	.contact-personal {
 		background-image: url('../images/contacto_personal.jpg');
 		background-repeat: no-repeat;
 		background-position: right top;
-		background-size: auto 100%;
+		background-size: 100% auto;
+		padding: 5rem 0;
 	}
 	.page-contact .row{
 		max-width: 75rem;
@@ -474,14 +475,20 @@ span.error-frontpage { margin-bottom: 0; }
 /*
 * SECCION LIQUIDACION FRONTEND
 */
+	.bg-orange { background-color: orange!important; }
+	.item-carousel figure { margin: 0; }
+	.item-carousel button { margin: 0; font-weight: 600 }
 	.item-carousel {
 		position: relative;
+		margin: .5rem .7rem;
+		background-color: #fff;
+		box-shadow: 0 0 1px #444;
 	}
 
 	.item-carousel:hover {
-		opacity: 1;
-		bottom: 7px;
+		box-shadow: 0 1px 4px #222;
 	}
+	.item-carousel p { margin: 0; }
 
 	.etiqueta-oferta {
 		position: absolute;
@@ -511,10 +518,15 @@ span.error-frontpage { margin-bottom: 0; }
 	}
 
 	.detalles {
-		padding-top: .8rem;
-		text-align: center;
+		padding: .3rem;
 	}
 
+	.item-carousel .precio { 
+		font-size: 1rem;
+		color: #2B9948;
+		font-weight: 700;
+		text-shadow: 1px 1px 0 #2B9948; 
+	}
 	.precio_sin_oferta {
 		text-align: right;
 		padding-right: 5px;
@@ -608,6 +620,7 @@ span.error-frontpage { margin-bottom: 0; }
 .form-cotizacion input[type="radio"] {
 	margin-bottom: 10px;
 }
+
 /*
 * MEDIA QUERIES
 */

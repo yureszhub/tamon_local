@@ -29,12 +29,12 @@ class Frontend extends Controller
       ->get();
 
     foreach ($categorias as $cat) {
-      $cat->productos = DB::table('familia_producto')->where('categoria_id', $cat->id)->take(8)->get();
+      $cat->productos = DB::table('familia_producto')->where('categoria__id', $cat->id)->take(8)->get();
     }
 
     $ofertas = DB::table('ofertas')
       ->leftJoin('familia_producto', 'ofertas.cod_producto', '=', 'familia_producto.cod_producto')
-      ->select('ofertas.*', 'familia_producto.id', 'familia_producto.precio_unitario as precio')
+      ->select('ofertas.*', 'familia_producto.id', 'familia_producto.precio_unitario as precio', 'familia_producto.foto', 'familia_producto.nombre')
       ->take(5)
       ->get();
 
@@ -45,7 +45,7 @@ class Frontend extends Controller
       $categoria = DB::table('categories')->where('slug', $slug)->first();
       if (!is_null($categoria)) {
         $productos = DB::table('familia_producto')
-                    ->where('familia_producto.categoria_id', $categoria->id)
+                    ->where('familia_producto.categoria__id', $categoria->id)
                     ->leftJoin('ofertas', 'familia_producto.cod_producto', '=', 'ofertas.cod_producto')
                     ->orderBy('familia_producto.id', 'desc')
                     ->select('familia_producto.id', 'familia_producto.cod_producto', 'familia_producto.nombre', 'familia_producto.descripcion', 'familia_producto.precio_unitario', 'familia_producto.foto', 'ofertas.descuento')

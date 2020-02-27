@@ -1,5 +1,56 @@
 $(document).ready(function(){
-	$('.owl-carousel').owlCarousel({
+	/*$('.owl-carousel').owlCarousel({
+	    loop:true,
+	    center:true,
+	    smartSpeed:1500,
+	    mouseDrag:false,
+	    navText:["<span><</span>","<span>></span>"],
+	    responsiveClass:true,
+	    responsive:{
+	        0:{
+	            items:1,
+	            nav:true,
+	            loop:true
+	        },
+	        600:{
+	            items:3,
+	            nav:true,
+	            loop:true
+	        },
+	        1000:{
+	            items:5,
+	            nav:true,
+	            loop:true
+	        }
+	    }
+	});*/
+	$('.slider-category-home').owlCarousel({
+	    loop:true,
+	    center:true,
+	    smartSpeed:1500,
+	    mouseDrag:false,
+	    nav:false,
+	    navText:["<span><</span>","<span>></span>"],
+	    responsiveClass:true,
+	    responsive:{
+	        0:{
+	            items:1,
+	            nav:false,
+	            loop:true
+	        },
+	        600:{
+	            items:3,
+	            nav:false,
+	            loop:true
+	        },
+	        1000:{
+	            items:5,
+	            nav:false,
+	            loop:true
+	        }
+	    }
+	});
+	$('.slider-ofertas-home').owlCarousel({
 	    loop:true,
 	    center:true,
 	    smartSpeed:1500,

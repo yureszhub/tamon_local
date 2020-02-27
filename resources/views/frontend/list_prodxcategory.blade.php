@@ -27,7 +27,7 @@
 				@else
 					<a href="{{ route('producto', ['id'=>$p->id]) }}">
 						<figure>
-							<img src="{{ url('imgProductos_215/' . $p->foto) }}">
+							<img src="{{ asset('imgProductos_215/' . $p->foto) }}">
 						</figure>
 						<div class="detalles">
 							{{-- <span class="precio_anterior">S/ {{ $p->precio_anterior }}</span> --}}

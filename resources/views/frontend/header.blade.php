@@ -66,10 +66,16 @@
             <li><a href="{{ route('contacto-corporativo') }}">Corporativo</a></li>
           </ul>
         </li>
-        <?php $categorias = DB::table('categories')->select('id' ,'name')->get(); ?>
-        <li v-for="c in categorias" class="dotted">
-          <a :href="'/categoria/'+c.slug">@{{ c.name }}</a>
+        <li class="has-dropdown dotted">
+          <a class="last-clicked">Categorías</a>
+          <ul class="dropdown">
+            <li v-for="c in categorias"><a :href="'/categoria/'+c.slug">@{{ c.name }}</a></li>
+          </ul>
         </li>
+        <?php //$categorias = DB::table('categories')->select('id' ,'name')->get(); ?>
+       {{--  <li v-for="c in categorias" class="dotted">
+          <a :href="'/categoria/'+c.slug">@{{ c.name }}</a>
+        </li> --}}
         <li class="dotted">
           <a href="{{ route('producto.carrito_de_compras') }}">
             <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i></i> Shopping Cart

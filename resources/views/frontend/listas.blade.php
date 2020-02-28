@@ -20,12 +20,10 @@
 		</li>
 		@endforeach
 	</ul>
-	<div class="large-12 columns anuncio">
-		<h2 class="anuncio-liquidacion"><span class="color-white">PRODUCTOS EN OFERTA</span> 2020</h2>
-	</div>
-	<div class="large-12 columns content-owl-carousel" style="background-color: rgb(151, 249, 177)">
+	<div class="large-12 columns content-owl-carousel">
 		<div class="row-carousel">
 			<div class="large-10 large-offset-1 columns">
+				<h2 class="text-center">OFERTAS 2020</h2>
 				<div class="owl-carousel owl-theme slider-ofertas-home" id="slider-carousel-category">
 					@foreach($ofertas as $o)
 						<div class="item owl-animated-out liquidacion item-carousel">
@@ -39,7 +37,7 @@
 									<p style="font-size: 11px; color: #666">Antes S/ {{ $o->precio }}</p>
 									<p class="precio_con_oferta">S/ {{ number_format( ($o->precio) - ($o->precio * ($o->descuento / 100)), 2, '.', ',') }}</p>
 								</div>
-								<button class="button expand success">Ver Oferta</button>
+								<button class="button warning">Ver Oferta</button>
 							</a>
 							@if($o->descuento != 0)
 								<span class="etiqueta-oferta">-{{ $o->descuento }}%</span>
@@ -52,32 +50,32 @@
 			</div>
 		</div>
 	</div>
-	<div class="large-12 columns content-owl-carousel categorias-productos-frontend" style="background-color: #f5f5f5">
-	@foreach ($cate as $ct)
+	<div class="large-12 columns content-owl-carousel categorias-productos-frontend">
+		<div class="row">
+		@foreach ($cate as $ct)
 			<div class="row-carousel">
-				<div class="large-10 large-offset-1 columns">
-					<div class="large-12">
-						<strong style="font-size: 2.2em; text-transform: uppercase; margin-right: 15px;">{{ $ct->name }}</strong> <a href="{{ url('/categoria', ['slug'=>$ct->slug]) }}">Ver más</a>
+				<div class="large-12 columns" style="padding-top: .6rem; padding-bottom: .6rem;">
+					<div style="margin-bottom: .4rem;">
+						<h2 style="font-size: 1.6rem; margin-right: 5px; display: inline;">{{ $ct->name }}</h2> <a href="{{ url('/categoria', ['slug'=>$ct->slug]) }}" class="ver-mas">Ver más</a>
 					</div>
-					<div class="owl-carousel owl-theme slider-category-home" id="slider-carousel-category">
+					<div class="owl-carousel owl-theme slider-category-home">
 						@foreach($ct->productos as $p)
-							<div class="item owl-animated-out item-carousel">
+							<div class="item owl-animated-out item-carousel item-producto">
 								<a href="{{ url('/producto', ['id'=>$p->id]) }}">
-									<figure>
-										{{-- <img src="{{ asset('/imgProductos_215').'/'.$p->foto }}"> --}}
-										<img src="{{ asset('/images/img_product.jpg') }}">
-									</figure>
+									{{-- <img src="{{ asset('/imgProductos_400').'/'.$p->foto }}"> --}}
+									<img src="{{ asset('/images/img_product_2.jpg') }}">
 									<div class="detalles">
-										<p class="title_elemento">{{ $p->nombre }}</p>
-										<p class="precio">S/ {{ $p->precio_unitario }}</p>
+										<h2 class="title_product">{{ $p->nombre }}</h2>
+										<p class="price-product">S/ {{ $p->precio_unitario }}</p>
 									</div>
-									<button type="button" class="button expand success bg-orange">Ver Producto</button>
+									<button type="button" class="button button-go-product">Ver Producto</button>
 								</a>
 							</div>
 						@endforeach
 					</div>
 				</div>
 			</div>
-	@endforeach
+		@endforeach
+		</div>
 	</div>
 @endsection

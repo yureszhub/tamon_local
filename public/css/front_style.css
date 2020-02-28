@@ -1,26 +1,10 @@
 @font-face {
-    font-family: 'open_sans';
-    src: url('../fonts/opensans-regular-webfont.woff2') format('woff2'),
-         url('../fonts/opensans-regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
     font-family: 'alfa_slab_one';
     src: url('../fonts/alfaslabone-regular-webfont.woff2') format('woff2'),
          url('../fonts/alfaslabone-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
-}
-
-@font-face {
-    font-family: 'freckle_face';
-    src: url('../fonts/freckleface-regular-webfont.woff2') format('woff2'),
-         url('../fonts/freckleface-regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
 }
 
 @font-face {
@@ -54,6 +38,9 @@ body {
 h1, h2, h3, h4, h5 {
 	font-family: 'titillium_bold', arial, helvetica, sans-serif;
 }
+
+.bg-orange { background-color: orange!important; }
+.bg-red-black { background-color: #7A1F16!important; }
 
 span.error-frontpage { margin-bottom: 0; }
 
@@ -146,99 +133,7 @@ span.error-frontpage { margin-bottom: 0; }
 	color: #fff;
 	font-family: 'alfa_slab_one', cursive;
 }
-
-.anuncio {
-	background-color: #212020;
-	text-align: center;
-}
-.anuncio-liquidacion {
-	color: #2B9948;
-	font-family: 'alfa_slab_one', cursive;
-	letter-spacing: -0.3px;
-	margin: 0.5rem 0;
-	font-size: 2.8rem;
-}
-.color-white {
-	color: white;
-}
-/* sliders */
-
-.content-owl-carousel {
-	padding-top: 0.9375rem;
-	padding-bottom: 0.9375rem;
-}
-
-.content-owl-carousel .owl-stage-outer {
-	z-index: 99;
-}
-
-/* owl-carousel */
-#slider-carousel-category .owl-prev {
-	float: left;
-	font-size: 3rem;
-	background-color: rgba(43, 153, 72, .8);
-	margin-left: -41px
-}
-#slider-carousel-category .owl-prev:hover {
-	background-color: rgba(43, 153, 72, 1);	
-}
-#slider-carousel-category .owl-next {
-	float: right;
-	font-size: 3rem;
-	background-color: rgba(43, 153, 72, .8);
-	margin-right: -41px;
-}
-#slider-carousel-category .owl-next:hover {
-	background-color: rgba(43, 153, 72, 1);	
-}
-/*.owl-item {
-	text-align: center;
-}*/
-
-.categorias-productos-frontend {
-	/*background: #f2f2f2;*/
-}
-
-.precio_anterior {
-	text-decoration: line-through;
-	color: #8d8d8d;
-	text-shadow: 1px 0 0 #8d8d8d;
-	font-size: .9rem;
-}
-
-.precio_actual {
-	font-weight: 700;
-	color: #2B9948;
-	font-size: 1.3rem;
-}
-
-.slider-carousel {
-	padding-top: 3rem;
-	padding-bottom: 3rem;
-}
-
-.slider-carousel figure {
-	margin: 0 auto;
-}
-
-.slider-carousel .owl-stage {
-	padding-top: 2.5rem;
-}
-/*.row-carousel .owl-carousel .owl-nav.disabled {
-	display: block;	
-}*/
-#slider-carousel-category {
-	padding-top: 0;
-}
-/*#slider-carousel-category .owl-nav {
-	display: block;
-	position: absolute;
-	width: 100%;
-	top: 50%;
-	margin-top: 0;
-	transform: translateY(-50%);
-	z-index: 9;
-}*/
+.color-white { color: white !important; }
 
 /* end lista flexbox */
 
@@ -372,50 +267,50 @@ span.error-frontpage { margin-bottom: 0; }
 	}
 
 /* show productos */
-.content-producto {
-	padding-top: 1.55rem;
-	padding-bottom: 1.55rem;
-}
+	.content-producto {
+		padding-top: 1.55rem;
+		padding-bottom: 1.55rem;
+	}
 
-.content-producto figure {
-	text-align: center;
-}
+	.content-producto figure {
+		text-align: center;
+	}
 
-.p-precio-anterior {
-	text-decoration: line-through;
-}
+	.p-precio-anterior {
+		text-decoration: line-through;
+	}
 
-.p-precio-actual {
-	color: #2B9948;
-	font-size: 1.5rem;
-}
+	.p-precio-actual {
+		color: #2B9948;
+		font-size: 1.5rem;
+	}
 
-.button-agregar-carrito {
-	border-radius: 3px;
-}
+	.button-agregar-carrito {
+		border-radius: 3px;
+	}
 
-#zoom_01 { border: 1px solid #eee; }
-.box-images-zoom > div { margin: 0 auto; margin-bottom: 5px; }
-#gal1 { text-align: center; }
-#gal1 img{border: 1px solid #eee;}
+	#zoom_01 { border: 1px solid #eee; }
+	.box-images-zoom > div { margin: 0 auto; margin-bottom: 5px; }
+	#gal1 { text-align: center; }
+	#gal1 img{border: 1px solid #eee;}
  
 /*Change the colour*/
-#gal1 .active img{ border: 1px solid #333; }
+	#gal1 .active img{ border: 1px solid #333; }
 
-.titulo-show { border-bottom: 1px solid #eee; }
+	.titulo-show { border-bottom: 1px solid #eee; }
 
-#img_01 { border: 1px solid #eee; }
+	#img_01 { border: 1px solid #eee; }
 
-.content-producto-vista ul li { list-style: none; }
-.content-producto-vista ul li:before { content: "\f054"; font-family: "FontAwesome"; font-size: 15px; margin-right: 4px; }
+	.content-producto-vista ul li { list-style: none; }
+	.content-producto-vista ul li:before { content: "\f054"; font-family: "FontAwesome"; font-size: 15px; margin-right: 4px; }
 
-.oferta-precio-normal { color: #909090; }
+	.oferta-precio-normal { color: #909090; }
 
-.precio-normal-tachado { color: #909090; text-decoration: line-through; font-size: 1.3rem; }
-.box-descuento { background-color: #ea2840; color: #fff; border-radius: 3px; margin-left: 8px; padding: 3px; }
-.descuento-soles { border: 1px solid #eee; color: #909090; border-radius: 3px; margin-left: 8px; padding: 3px; }
-.box-detalles-oferta { border-bottom: 1px solid #eee; }
-.box-precio-normal, .box-precio-final, .box-button-cart { padding: 7px 0; }
+	.precio-normal-tachado { color: #909090; text-decoration: line-through; font-size: 1.3rem; }
+	.box-descuento { background-color: #ea2840; color: #fff; border-radius: 3px; margin-left: 8px; padding: 3px; }
+	.descuento-soles { border: 1px solid #eee; color: #909090; border-radius: 3px; margin-left: 8px; padding: 3px; }
+	.box-detalles-oferta { border-bottom: 1px solid #eee; }
+	.box-precio-normal, .box-precio-final, .box-button-cart { padding: 7px 0; }
 /*
 * PAGINA CONTACTO
 */
@@ -468,99 +363,6 @@ span.error-frontpage { margin-bottom: 0; }
 	.page-contact-right h2 {
 		margin-top: 3rem;
 	}
-/*
-*  FIN PAGINA CONTACTO
-*/
-
-/*
-* SECCION LIQUIDACION FRONTEND
-*/
-	.bg-orange { background-color: orange!important; }
-	.item-carousel figure { margin: 0; }
-	.item-carousel button { margin: 0; font-weight: 600 }
-	.item-carousel {
-		position: relative;
-		margin: .5rem .7rem;
-		background-color: #fff;
-		box-shadow: 0 0 1px #444;
-	}
-
-	.item-carousel:hover {
-		box-shadow: 0 1px 4px #222;
-	}
-	.item-carousel p { margin: 0; }
-
-	.etiqueta-oferta {
-		position: absolute;
-		top: 0;
-		right: 0;
-		background-color: rgb(240, 65, 36);
-		color: #fff;
-		padding: .25rem;
-		border-radius: 3px;
-		font-weight: 600;
-		-webkit-transition: font-size 0.2s ease-out;
-		transition: font-size 0.2s ease-out;
-	}
-
-	.liquidacion:hover .etiqueta-oferta {
-		font-size: 1.3rem;
-		background-color: #2B9948;
-	}
-
-	.detalles .mitad {
-		display: inline-block;
-		width: 50%;
-		float: left;
-		color: #8d8d8d;
-		text-shadow: 1px 0 0 #8d8d8d;
-		font-size: .8rem;
-	}
-
-	.detalles {
-		padding: .3rem;
-	}
-
-	.item-carousel .precio { 
-		font-size: 1rem;
-		color: #2B9948;
-		font-weight: 700;
-		text-shadow: 1px 1px 0 #2B9948; 
-	}
-	.precio_sin_oferta {
-		text-align: right;
-		padding-right: 5px;
-		border-right: 1px solid #8d8d8d;
-		text-decoration: line-through;
-	}
-
-	.descuento {
-		text-align: left;
-		padding-left: 5px;
-	}
-
-	.precio_con_oferta {
-		font-size: 1.4rem;
-		color: #2B9948;
-		font-weight: 700;
-		text-shadow: 1px 1px 0 #2B9948;
-	}
-
-	.precio-con-descuento {
-		color: #ea2840;
-		font-weight: 700;
-		font-size: 1.8rem;
-	}
-
-	.titulo-item-oferta, .title_elemento {
-		color: #363636;
-		font-weight: 600;
-		letter-spacing: -0.25px;
-	}
-/*
-* FIN SECCION LIQUIDACION
-*/
-
 
 /*
 * SECCION PRODUCTOS POR CATEGORIA
@@ -621,6 +423,43 @@ span.error-frontpage { margin-bottom: 0; }
 	margin-bottom: 10px;
 }
 
+
+/* ITEM PRODUCTO */
+ 	.item-producto {
+ 		overflow: hidden;
+ 		border-radius: .5rem;
+ 		border: 1px solid #e4dcdc;
+ 	}
+ 	.item-producto .detalles {
+ 		padding: .5rem;
+ 	}
+ 	.item-producto .title_product {
+ 		color: #1a252d;
+ 		font-size: 16px;
+ 	}
+ 	.item-producto .price-product {
+ 		color: rgb(87, 94, 102);
+ 		margin-bottom: 0;
+ 	}
+ 	.item-producto .button-go-product {
+ 		margin-bottom: 0;
+ 		background-color: rgb(248, 249, 252);
+ 		color: rgb(87, 94, 102);
+ 		width: 100%;
+ 	}
+ 	.item-producto:hover img { filter: brightness(0.9); }
+ 	.item-producto:hover .button-go-product {
+ 		background-color: #e4dcdc;
+ 	}
+/* FIN ITEM PRODUCTO */
+.categorias-productos-frontend .ver-mas { border: 1px solid #1385D2; padding: .2rem .5rem; }
+.categorias-productos-frontend .ver-mas:hover { background-color: #1385D2; color: #fff; }
+.slider-category-home .owl-prev {
+	background-color: #369F6C !important;
+}
+.slider-category-home .owl-next {
+	background-color: #369F6C !important;
+}
 /*
 * MEDIA QUERIES
 */

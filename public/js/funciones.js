@@ -26,32 +26,34 @@ $(document).ready(function(){
 	});*/
 	$('.slider-category-home').owlCarousel({
 	    loop:true,
+	    margin:15,
 	    center:true,
 	    smartSpeed:1500,
-	    mouseDrag:false,
-	    nav:false,
+	    mouseDrag:true,
+	    dots:false,
 	    navText:["<span><</span>","<span>></span>"],
 	    responsiveClass:true,
 	    responsive:{
 	        0:{
 	            items:1,
-	            nav:false,
+	            nav:true,
 	            loop:true
 	        },
 	        600:{
 	            items:3,
-	            nav:false,
+	            nav:true,
 	            loop:true
 	        },
 	        1000:{
 	            items:5,
-	            nav:false,
+	            nav:true,
 	            loop:true
 	        }
 	    }
 	});
 	$('.slider-ofertas-home').owlCarousel({
 	    loop:true,
+	    margin: 15,
 	    center:true,
 	    smartSpeed:1500,
 	    mouseDrag:false,

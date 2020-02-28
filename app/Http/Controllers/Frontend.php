@@ -29,7 +29,7 @@ class Frontend extends Controller
       ->get();
 
     foreach ($categorias as $cat) {
-      $cat->productos = DB::table('familia_producto')->where('categoria__id', $cat->id)->take(8)->get();
+      $cat->productos = DB::table('familia_producto')->where('categoria__id', $cat->id)->take(6)->get();
     }
 
     $ofertas = DB::table('ofertas')

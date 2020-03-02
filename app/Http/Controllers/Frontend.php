@@ -29,7 +29,16 @@ class Frontend extends Controller
       ->get();
 
     foreach ($categorias as $cat) {
-      $cat->productos = DB::table('familia_producto')->where('categoria__id', $cat->id)->take(6)->get();
+      $productos = DB::table('familia_producto')
+                          ->where('categoria__id', $cat->id)
+                          ->take(6)
+                          ->get();
+
+      foreach ($productos as $p) {
+        $p->descuento = 10;
+      }
+
+      $cat->productos = $productos;
     }
 
     $ofertas = DB::table('ofertas')
@@ -42,20 +51,34 @@ class Frontend extends Controller
   }
 
   public function productosXcategoria($slug) {
-      $categoria = DB::table('categories')->where('slug', $slug)->first();
-      if (!is_null($categoria)) {
-        $productos = DB::table('familia_producto')
-                    ->where('familia_producto.categoria__id', $categoria->id)
-                    ->leftJoin('ofertas', 'familia_producto.cod_producto', '=', 'ofertas.cod_producto')
-                    ->orderBy('familia_producto.id', 'desc')
-                    ->select('familia_producto.id', 'familia_producto.cod_producto', 'familia_producto.nombre', 'familia_producto.descripcion', 'familia_producto.precio_unitario', 'familia_producto.foto', 'ofertas.descuento')
-                    ->paginate(16);
+    $categoria = DB::table('categories')->where('slug', $slug)->first();
+    $date = new \DateTime();
+    if (!is_null($categoria)) {
+      $productos = DB::table('familia_producto')
+                  ->where('familia_producto.categoria__id', $categoria->id)
+                  ->orderBy('familia_producto.id', 'desc')
+                  ->select('familia_producto.id', 'familia_producto.cod_producto', 'familia_producto.nombre', 'familia_producto.descripcion', 'familia_producto.precio_unitario', 'familia_producto.foto')
+                  ->paginate(16);
 
-        return view('frontend.list_prodxcategory', ['productos' => $productos, 'categoria' => $categoria]);
-      } else {
-        return redirect('/');
+      foreach ($productos as $p) {
+        /*$oferta = DB::table('ofertas')
+                    ->where('cod_producto', $p->cod_producto)
+                    ->where('fecha_inicio', '<=', $date)
+                    ->where('fecha_fin', '>=', $date)
+                    ->select('descuento')
+                    ->first();
+
+        if (!is_null($oferta))
+          $p->descuento = $oferta->descuento;
+        else
+          $p->descuento = null;*/
+        $p->descuento = 10;
       }
-    
+
+      return view('frontend.list_prodxcategory', ['productos' => $productos, 'categoria' => $categoria]);
+    } else {
+      return redirect('/');
+    }
   }
 
   public function showProducto($id_producto) {

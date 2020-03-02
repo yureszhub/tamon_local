@@ -63,7 +63,13 @@
 							<div class="item owl-animated-out item-carousel item-producto">
 								<a href="{{ url('/producto', ['id'=>$p->id]) }}">
 									{{-- <img src="{{ asset('/imgProductos_400').'/'.$p->foto }}"> --}}
-									<img src="{{ asset('/images/img_product_2.jpg') }}">
+									<figure>
+										<img src="{{ asset('/images/img_product_2.jpg') }}">
+										<div class="space-descuento">
+											<span class="off_product">{{ $p->descuento }}</span>
+											<span class="percent">% descuento</span>
+										</div>
+									</figure>
 									<div class="detalles">
 										<h2 class="title_product">{{ $p->nombre }}</h2>
 										<p class="price-product">S/ {{ $p->precio_unitario }}</p>

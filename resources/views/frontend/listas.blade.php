@@ -65,14 +65,20 @@
 									{{-- <img src="{{ asset('/imgProductos_400').'/'.$p->foto }}"> --}}
 									<figure>
 										<img src="{{ asset('/images/img_product_2.jpg') }}">
-										<div class="space-descuento">
-											<span class="off_product">{{ $p->descuento }}</span>
-											<span class="percent">% descuento</span>
-										</div>
+										@if (!is_null($p->descuento))
+											<div class="space-descuento">
+												<span class="off_product">{{ $p->descuento }}</span>
+												<span class="percent">% descuento</span>
+											</div>
+										@endif
 									</figure>
 									<div class="detalles">
 										<h2 class="title_product">{{ $p->nombre }}</h2>
-										<p class="price-product">S/ {{ $p->precio_unitario }}</p>
+										@if (is_null($p->descuento))
+											<p class="price-product">S/ {{ $p->precio_unitario }}</p>
+										@else
+											<p class="price-product-with-offer"><span class="price-old">S/ {{ $p->precio_unitario }}</span><span>S/ 200.00</span></p>
+										@endif
 									</div>
 									<button type="button" class="button button-go-product">Ver Producto</button>
 								</a>

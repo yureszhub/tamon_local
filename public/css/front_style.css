@@ -437,20 +437,31 @@ span.error-frontpage { margin-bottom: 0; }
  		bottom: 0; 
  		background-color: red; 
  		color: #fff; 
- 		padding: .02rem .2rem;
+ 		padding: .04rem .25rem;
  		font-weight: 600;
  		width: 100%;
+ 		font-size: .87rem;
  	}
  	.item-producto .detalles {
- 		padding: .5rem;
+ 		padding: 0 .5rem;
  	}
  	.item-producto .title_product {
  		color: #1a252d;
  		font-size: 16px;
+ 		margin-bottom: .2rem;
  	}
  	.item-producto .price-product {
- 		color: rgb(87, 94, 102);
+ 		color: rgb(61, 64, 68);
  		margin-bottom: 0;
+ 	}
+ 	.item-producto .price-product-with-offer {
+ 		color: rgb(61, 64, 68);
+ 		margin-bottom: 0;
+ 		font-size: .88rem;
+ 	}
+ 	.item-producto .price-product-with-offer .price-old {
+ 		text-decoration: line-through;
+ 		margin-right: 8px;
  	}
  	.item-producto .button-go-product {
  		margin-bottom: 0;

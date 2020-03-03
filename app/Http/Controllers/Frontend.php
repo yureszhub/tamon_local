@@ -33,9 +33,19 @@ class Frontend extends Controller
                           ->where('categoria__id', $cat->id)
                           ->take(6)
                           ->get();
-
+      $date = new \DateTime();
       foreach ($productos as $p) {
-        $p->descuento = 10;
+        $oferta = DB::table('ofertas')
+                    ->where('cod_producto', $p->cod_producto)
+                    ->where('fecha_inicio', '<=', $date)
+                    ->where('fecha_fin', '>=', $date)
+                    ->select('descuento')
+                    ->first();
+
+        if (!is_null($oferta))
+          $p->descuento = $oferta->descuento;
+        else
+          $p->descuento = null;
       }
 
       $cat->productos = $productos;
@@ -61,7 +71,7 @@ class Frontend extends Controller
                   ->paginate(16);
 
       foreach ($productos as $p) {
-        /*$oferta = DB::table('ofertas')
+        $oferta = DB::table('ofertas')
                     ->where('cod_producto', $p->cod_producto)
                     ->where('fecha_inicio', '<=', $date)
                     ->where('fecha_fin', '>=', $date)
@@ -71,8 +81,7 @@ class Frontend extends Controller
         if (!is_null($oferta))
           $p->descuento = $oferta->descuento;
         else
-          $p->descuento = null;*/
-        $p->descuento = 10;
+          $p->descuento = null;
       }
 
       return view('frontend.list_prodxcategory', ['productos' => $productos, 'categoria' => $categoria]);

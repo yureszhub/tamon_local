@@ -59,10 +59,10 @@ class Cart extends Model
     	$this->totalPrice += $precio_venta;
     }*/
     public function changeQty($id, $cant) {
-        /*recuperamos la actual cantidad del producto que estamos cambiando la cantidad*/
+        //recuperamos la actual cantidad del producto que estamos cambiando la cantidad
         $actual_qty = $this->items[$id]['qty'];
         
-        /*quitamos la actual cantidad del producto*/
+        //quitamos la actual cantidad del producto
         $this->totalQty -= $actual_qty;
         /*quitamos la actual cantidad del producto*/
             /*$this->items[$id]['qty']-=$actual_qty;*/
@@ -72,7 +72,7 @@ class Cart extends Model
         /*agregamos la nueva cantidad*/
         $this->items[$id]['qty'] = $cant;
         $this->totalQty += $cant;
-        $precio_venta = $this->items[$id]['item']['precio'];
+        $precio_venta = $this->items[$id]['item']->precio;
         /*$this->items[$id]['price'] = ($this->items[$id]['item']['precio'])*($this->items[$id]['qty']);*/
         $this->items[$id]['price'] = ($precio_venta)*($this->items[$id]['qty']);
         /*actualizamos el Precio Total de toda la cotizacion*/

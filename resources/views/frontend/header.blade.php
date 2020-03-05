@@ -59,13 +59,16 @@
         <li class="dotted">
           <a href="{{ route('next') }}">Inicio</a>
         </li>
-        <li class="has-dropdown dotted">
+        <li class="dotted">
+          <a href="{{ route('contacto-personal') }}">Contacto</a>
+        </li>
+        {{-- <li class="has-dropdown dotted">
           <a class="last-clicked">Contácto</a>
           <ul class="dropdown">
             <li><a href="{{ route('contacto-personal') }}">Personal</a></li>
             <li><a href="{{ route('contacto-corporativo') }}">Corporativo</a></li>
           </ul>
-        </li>
+        </li> --}}
         <li class="has-dropdown dotted">
           <a class="last-clicked">Categorías</a>
           <ul class="dropdown">
@@ -78,7 +81,7 @@
         </li> --}}
         <li class="dotted">
           <a href="{{ route('producto.carrito_de_compras') }}">
-            <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i></i> Shopping Cart
+            <i class="fa fa-opencart fa-lg" aria-hidden="true"></i></i> Shopping Cart
             @if( Session::has('cart') && Session::get('cart')['totalQty'] > 0)
               <span class="badge-shopping badge animated bounceIn">{{ Session::get('cart')->totalQty }}</span>
             @endif

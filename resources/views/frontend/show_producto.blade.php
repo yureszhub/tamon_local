@@ -1,28 +1,38 @@
 @extends('frontend.header')
 
 @section('content')
-<div class="large-12 columns">
-	<div class="large-12 columns content-producto content-producto-vista">
-	@foreach($producto as $p)
-		<div class="large-6 columns">
+<div class="row" style="padding: 2rem 0rem">
+	<div class="content-producto">
+		<div class="large-6 columns text-center">
 			<figure>
-				<img id="zoom_01" src="{{ url('imgProductos_400/' . $p->foto) }}" data-zoom-image="{{ url('imgProductos/' . $p->foto) }}"/>
+				<img id="zoom_01" src="{{ url('imgProductos_400/' . $producto->foto) }}" data-zoom-image="{{ url('imgProductos/' . $producto->foto) }}"/>
 			</figure>
 		</div>
 		<div class="large-6 columns">
-			<h2 class="titulo-show">{{ $p->nombre }}</h2>
-			<div class="box-detalles-oferta">
-				<h4>Características del producto: </h4>
-				{!! $p->descripcion !!}
+			<h1 class="titulo-show">{{ $producto->nombre }}</h1>
+			@if (!is_null($producto->descuento))
+				<h3 class="porcentaje_descuento">{{ $producto->descuento }} % descuento</h3>
+			@endif
+			<div class="box-precio">
+				@if (is_null($producto->descuento))
+					<strong>S/ {{ $producto->precio_unitario }}</strong>
+				@else
+					<p class="price-product-with-offer">
+						<span class="price-old">S/ {{ $producto->precio_unitario }}</span>
+						<span class="price-con-descuento">S/ {{  $producto->precio_unitario - ($producto->precio_unitario * ($producto->descuento/100))  }}</span>
+					</p>
+				@endif
 			</div>
-			<div class="box-precio-final">
-				<strong>Precio Actual : </strong><span class="precio-con-descuento">S/{{ $p->precio_unitario }}</span>
+
+			<div class="box-detalles">
+				{!! $producto->descripcion !!}
 			</div>
 			<div class="box-button-cart">
-				<a href="{{ route('producto.agregar_al_carrito', ['tipo' => 'p','id' => $p->id]) }}" class="button large success button-agregar-carrito"><i class="fa fa-cart-plus" aria-hidden="true"></i> Agregar al carro</a>
+				<a href="{{ route('producto.agregar_al_carrito', ['tipo' => 'p','id' => $producto->id]) }}" class="button small success button-agregar-carrito">
+				AGREGAR A MI BOLSA
+				</a>
 			</div>
 		</div>
-		@endforeach
 	</div>
 </div>
 @endsection

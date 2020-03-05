@@ -23,6 +23,8 @@ class Frontend extends Controller
    * @return \Illuminate\Http\Response
    */
   public function index() {
+    $date = new \DateTime();
+
     $categorias = DB::table('categories')
       ->where('id', '!=', 1)
       ->select('id', 'name', 'slug')
@@ -33,7 +35,6 @@ class Frontend extends Controller
                           ->where('categoria__id', $cat->id)
                           ->take(6)
                           ->get();
-      $date = new \DateTime();
       foreach ($productos as $p) {
         $oferta = DB::table('ofertas')
                     ->where('cod_producto', $p->cod_producto)
@@ -52,9 +53,11 @@ class Frontend extends Controller
     }
 
     $ofertas = DB::table('ofertas')
+      ->where('fecha_inicio', '<=', $date)
+      ->where('fecha_fin', '>=', $date)
       ->leftJoin('familia_producto', 'ofertas.cod_producto', '=', 'familia_producto.cod_producto')
-      ->select('ofertas.*', 'familia_producto.id', 'familia_producto.precio_unitario as precio', 'familia_producto.foto', 'familia_producto.nombre')
-      ->take(5)
+      ->select('ofertas.*', 'familia_producto.id', 'familia_producto.precio_unitario', 'familia_producto.foto', 'familia_producto.nombre')
+      ->take(10)
       ->get();
 
     return view('frontend.listas', ['cate' => $categorias, 'ofertas' => $ofertas]);
@@ -99,8 +102,22 @@ class Frontend extends Controller
                   
       $producto = DB::table('familia_producto')
         ->where('id', $id_producto)
-        ->select('familia_producto.id', 'familia_producto.precio_unitario', 'familia_producto.nombre', 'familia_producto.descripcion', 'familia_producto.foto')
-        ->get();
+        ->select('familia_producto.id', 'cod_producto', 'familia_producto.precio_unitario', 'familia_producto.nombre', 'familia_producto.descripcion', 'familia_producto.foto')
+        ->first();
+
+      // buscamos si el producto tiene oferta actual
+      $date = new \DateTime();
+      $oferta = DB::table('ofertas')
+                    ->where('cod_producto', $producto->cod_producto)
+                    ->where('fecha_inicio', '<=', $date)
+                    ->where('fecha_fin', '>=', $date)
+                    ->select('descuento')
+                    ->first();
+
+      if (!is_null($oferta))
+        $producto->descuento = $oferta->descuento;
+      else
+        $producto->descuento = null;
 
       return view('frontend.show_producto', ['producto' => $producto]);
   }
@@ -129,8 +146,24 @@ class Frontend extends Controller
       $item = Oferta::find($id);
       $precio_venta = $item->precio;
     } elseif ($tipo == "p") { // el item recibido es un producto
-      $item = Producto::find($id);  
-      $precio_venta = $item->precio;
+      //$item = Producto::find($id);
+      $item = DB::table('familia_producto')
+                  ->where('id', $id)
+                  ->select('id', 'cod_producto', 'foto as img_producto', 'nombre as nom_producto', 'precio_unitario as precio')
+                  ->first();
+      $date = new \DateTime();
+      $oferta = DB::table('ofertas')
+                  ->where('cod_producto', $item->cod_producto)
+                  ->where('fecha_inicio', '<=', $date)
+                  ->where('fecha_fin', '>=', $date)
+                  ->select('descuento')
+                  ->first();
+
+      if (is_null($oferta)) {
+        $precio_venta = $item->precio;
+      } else {
+        $precio_venta = $item->precio - ($item->precio * ($oferta->descuento/100));
+      }
     }
     $oldCart = Session::has('cart') ? Session::get('cart') : null;
     $cart = new Cart($oldCart);
@@ -161,6 +194,8 @@ class Frontend extends Controller
     $cart = new Cart($oldCart);
     /*dd($cart->items['o-5']);*/
     /*dd($cart->items);*/
+
+    //dd($cart);
     return view('frontend.shopping-cart', ['productos' => $cart->items, 'totalPrice' => $cart->totalPrice]);
   }
 }

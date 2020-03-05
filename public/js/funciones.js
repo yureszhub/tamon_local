@@ -53,10 +53,11 @@ $(document).ready(function(){
 	});
 	$('.slider-ofertas-home').owlCarousel({
 	    loop:true,
+	    dots:false,
 	    margin: 15,
 	    center:true,
 	    smartSpeed:1500,
-	    mouseDrag:false,
+	    mouseDrag:true,
 	    navText:["<span><</span>","<span>></span>"],
 	    responsiveClass:true,
 	    responsive:{

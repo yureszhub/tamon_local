@@ -20,36 +20,43 @@
 		</li>
 		@endforeach
 	</ul>
-	<div class="large-12 columns content-owl-carousel">
-		<div class="row-carousel">
-			<div class="large-10 large-offset-1 columns">
-				<h2 class="text-center">OFERTAS 2020</h2>
-				<div class="owl-carousel owl-theme slider-ofertas-home" id="slider-carousel-category">
-					@foreach($ofertas as $o)
-						<div class="item owl-animated-out liquidacion item-carousel">
-							<a href="{{ route('producto', ['id'=>$o->id]) }}">
-								<figure>
-									{{-- <img src="{{ asset('/imgProductos_215').'/'.$o->foto }}"> --}}
-									<img src="{{ asset('/images/img_product.jpg') }}">
-								</figure>
-								<div class="detalles">
-									<p class="title_elemento">{{ $o->nombre }}</p>
-									<p style="font-size: 11px; color: #666">Antes S/ {{ $o->precio }}</p>
-									<p class="precio_con_oferta">S/ {{ number_format( ($o->precio) - ($o->precio * ($o->descuento / 100)), 2, '.', ',') }}</p>
-								</div>
-								<button class="button warning">Ver Oferta</button>
-							</a>
-							@if($o->descuento != 0)
-								<span class="etiqueta-oferta">-{{ $o->descuento }}%</span>
-							@else
-								<span class="etiqueta-oferta">Oferta</span>
-							@endif
-						</div><!-- item owl-animated-out liquidacion -->
-					@endforeach
+
+	@if (count($ofertas) > 0)
+		<div class="large-12 columns content-owl-carousel section-slider-ofertas-homepage" style="background-color: lightgreen; padding-bottom: 1.5rem;">
+			<div class="row">
+				<div class="large-12 columns">
+					<h2 class="text-center">PRODUCTOS EN OFERTA</h2>
+					<div class="owl-carousel owl-theme slider-ofertas-home">
+						@foreach($ofertas as $o)
+							<div class="item owl-animated-out item-carousel item-producto">
+								<a href="{{ url('/producto', ['id'=>$o->id]) }}">
+									<figure>
+										<img src="{{ asset('/images/img_product_2.jpg') }}">
+										@if (!is_null($o->descuento))
+											<div class="space-descuento">
+												<span class="off_product">{{ $o->descuento }}</span>
+												<span class="percent">% descuento</span>
+											</div>
+										@endif
+									</figure>
+									<div class="detalles">
+										<h2 class="title_product">{{ $o->nombre }}</h2>
+										@if (is_null($o->descuento))
+											<p class="price-product">S/ {{ $o->precio_unitario }}</p>
+										@else
+											<p class="price-product-with-offer"><span class="price-old">S/ {{ $o->precio_unitario }}</span><span>S/ {{ $o->precio_unitario - ($o->precio_unitario * ($o->descuento/100)) }}</span></p>
+										@endif
+									</div>
+									<button type="button" class="button button-go-product">Ver Oferta</button>
+								</a>
+							</div>
+						@endforeach
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	@endif
+
 	<div class="large-12 columns content-owl-carousel categorias-productos-frontend">
 		<div class="row">
 		@foreach ($cate as $ct)
@@ -77,7 +84,7 @@
 										@if (is_null($p->descuento))
 											<p class="price-product">S/ {{ $p->precio_unitario }}</p>
 										@else
-											<p class="price-product-with-offer"><span class="price-old">S/ {{ $p->precio_unitario }}</span><span>S/ 200.00</span></p>
+											<p class="price-product-with-offer"><span class="price-old">S/ {{ $p->precio_unitario }}</span><span>S/ {{  $p->precio_unitario - ($p->precio_unitario * ($p->descuento/100))  }}</span></p>
 										@endif
 									</div>
 									<button type="button" class="button button-go-product">Ver Producto</button>

@@ -43,7 +43,7 @@ class CotizacionController extends Controller
         Session::forget('cart'); // eliminamos de session el carrito de compras
         /* 
         $lista -> lista de los productos seleccionados en el carrito de compras,
-        esta lista tiene que ser enviada al correo de next
+        esta lista tiene que ser enviada al correo de la tienda
         */
         $codigos = "";
         $lista = "<ul>";
@@ -54,6 +54,9 @@ class CotizacionController extends Controller
         }
         $lista .= "</ul>";
         $codigos = trim($codigos, ',');
+        
+        \Mail::to($shopper->email)->send(new VerifyMail($shopper));
+
         return view('frontend.thanks', ['nombre' => $nombre_solicitante, 'correo' => $correo_solicitante, 'codigos' => $codigos]);
     }
 

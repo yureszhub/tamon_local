@@ -11,14 +11,15 @@ class sendMailCotizacion extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $data_cotizacion;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data_cotizacion)
     {
-        //
+        $this->data_cotizacion = $data_cotizacion;
     }
 
     /**
@@ -28,6 +29,6 @@ class sendMailCotizacion extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('emails.cotizacion');
     }
 }

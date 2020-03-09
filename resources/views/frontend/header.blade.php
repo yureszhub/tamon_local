@@ -81,7 +81,7 @@
         </li> --}}
         <li class="dotted">
           <a href="{{ route('producto.carrito_de_compras') }}">
-            <i class="fa fa-opencart fa-lg" aria-hidden="true"></i></i> Shopping Cart
+            <i class="fa fa-opencart fa-lg" aria-hidden="true"></i></i> Mi Bolsa
             @if( Session::has('cart') && Session::get('cart')['totalQty'] > 0)
               <span class="badge-shopping badge animated bounceIn">{{ Session::get('cart')->totalQty }}</span>
             @endif

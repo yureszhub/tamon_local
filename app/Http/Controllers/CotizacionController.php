@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Session;
+use App\Mail\sendMailCotizacion;
 
 class CotizacionController extends Controller
 {
@@ -16,6 +17,7 @@ class CotizacionController extends Controller
 
     public function recibirCotizacion(Request $request)
     {
+        //dd($request, $request->nombre_cotizacion);
         if (!Session::has('cart')) {
           return redirect()->route('next');
         }
@@ -46,16 +48,29 @@ class CotizacionController extends Controller
         esta lista tiene que ser enviada al correo de la tienda
         */
         $codigos = "";
-        $lista = "<ul>";
+        $lista = "<table><thead><tr><th style='border: 1px solid #444;'>Cantidad</th><th style='border: 1px solid #444;'>Cod. Producto</th><th style='border: 1px solid #444;'>Produto</th><th style='border: 1px solid #444;'>Precio Venta</th></tr></thead>";
+        $lista .= "<tbody>";
 
         foreach ($oldCart['items'] as $objeto) {
             $codigos .= $objeto['codigo_item'] . ",";
-            $lista .= "<li>" . $objeto['codigo_item']. " - " . $objeto['item']->nom_producto. "</li>";
+            $lista .= "<tr>";
+            $lista .= "<td style='border: 1px solid #444;'>".$objeto['qty']. "</td>";
+            $lista .= "<td style='border: 1px solid #444;'>".$objeto['item']->cod_producto. "</td>";
+            $lista .= "<td style='border: 1px solid #444;'>".$objeto['item']->nom_producto. "</td>";
+            $lista .= "<td style='text-align:right;border: 1px solid #444;'>S/ ".$objeto['price']. "</td>";
+            $lista .= "</tr>";
         }
-        $lista .= "</ul>";
+        $lista .= "</tbody></table>";
         $codigos = trim($codigos, ',');
+
+        $data_cotizacion = [
+            'lista' => $lista,
+            'nombre_solicitante' => $nombre_solicitante,
+            'correo_solicitante' => $correo_solicitante,
+            'tel_solicitante' => $tel_solicitante,
+        ];
         
-        \Mail::to($shopper->email)->send(new VerifyMail($shopper));
+        \Mail::to('yuresz.vp@gmail.com')->send(new sendMailCotizacion($data_cotizacion));
 
         return view('frontend.thanks', ['nombre' => $nombre_solicitante, 'correo' => $correo_solicitante, 'codigos' => $codigos]);
     }
